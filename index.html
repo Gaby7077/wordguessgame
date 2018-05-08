@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>Welcome!</h1>
+
+<!--Instructions-->
+
+<p>Welcome to the world of Hello Kitty!</p>
+<p>Guess the character</p>
+
+<p>Wins</p>
+
+
+<p>Remaining guesses<span id="remaining"></span></p>
+
+<p>Current word<span id="current"></span></p>
+
+<p>Letters guessed<span id="guessed"></span></p><div id="ok"></div>
+
+
+
+
+
+
+
+    <script>
+        
+        var words = ["Hello Kitty", "My Melodie", "Kuromi", "Chococat", "Little twin stars"];
+        var characters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "u", "v", "w", "x", "y", "z"];
+        var tries = 6;
+        var found = [];
+        var currentWord = words[ Math.floor((Math.random ()*words.length)+1)]; 
+        drawlines(currentWord);
+        document.getElementById("current").innerHTML = currentWord;
+
+         document.onkeyup = function(event) {
+            if (tries !=0 ){
+
+                console.log(characters.indexOf(event.key.toLowerCase()));
+        
+        var pressed = event.key.toLowerCase();
+        if (characters.indexOf(pressed) !=-1){
+            if (currentWord.indexOf(pressed)!= -1) {
+                found.push(pressed); 
+                drawlines(currentWord);
+                document.getElementById("guessed").innerHTML = event.key.toLowerCase();
+            } else { 
+                tries = tries-1; 
+                document.getElementById("remaining").innerHTML = tries;
+            }
+            
+            
+        }
+
+            }
+   else {
+       tries = 6;
+       found = [];
+       current.currentWord = words[ Math.floor((Math.random ()*words.length)+1)]; 
+       drawlines(currentWord);
+   }
+
+      };
+
+      function drawlines (word) {
+        var rayitas = "";
+        for (var x=0; word.length >x; x++) {
+              if  (found.indexOf(word[x].toLowerCase()) != -1) {
+                  rayitas += word[x];
+              } else if (word[x] == " " ){
+                  rayitas += " ";
+
+              
+              } else {
+                  rayitas += "_";
+              }
+          } 
+          document.getElementById("ok").innerHTML = rayitas;
+      }
+        
+        </script>
+    
+</body>
+</html>
